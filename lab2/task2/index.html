@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обробка даних форм</title>
+</head>
+<body>
+    <form method="get">
+        <fieldset style="width: 150px;">
+            x: <input type="text" name="x" placeholder="x">
+            y: <input type="text" name="y" placeholder="y">
+        </fieldset>
+
+        {% if time %}
+          <h3>Sum: {{ sum }}</h3>
+          <h3>Time: {{ time }}</h3>
+        {% endif %}
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

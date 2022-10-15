@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обробка даних форм</title>
+</head>
+<body>
+    <form action="cgi-bin/form.py" method="post">
+        <fieldset style="width: 150px;">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="surname" placeholder="Surname">
+        </fieldset>
+        <fieldset style="width: 150px;">
+            <legend>Courses:</legend>
+        
+            <div>
+              <input type="checkbox" id="maths" name="maths">
+              <label for="maths">Maths</label>
+            </div>
+            <div>
+              <input type="checkbox" id="biology" name="biology">
+              <label for="biology">Biology</label>
+            </div>
+            <div>
+                <input type="checkbox" id="chemistry" name="chemistry">
+                <label for="chemistry">Chemistry</label>
+            </div>
+            <div>
+                <input type="checkbox" id="history" name="history">
+                <label for="history">History</label>
+            </div>
+        </fieldset>
+
+        <fieldset style="width: 150px;">
+            <legend>Language:</legend>
+        
+            <div>
+              <input type="radio" id="maths" name="language" value="english" checked>
+              <label for="maths">English</label>
+            </div>
+            <div>
+              <input type="radio" id="biology" name="language" value="german">
+              <label for="biology">German</label>
+            </div>
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
