@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-center fixed-bottom bg-light">
+    <table class="table text-center w-75">
+        {% for key, value in stats.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
