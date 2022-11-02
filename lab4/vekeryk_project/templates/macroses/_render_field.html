@@ -1,0 +1,16 @@
+{% macro render_field(field) %}
+
+<div class="form-group">
+    {{ field.label }}
+
+    {% if field.errors %}
+        {{ field(style="border-color: red;", **kwargs) | safe }}
+            {% for error in field.errors %}
+                <div class="text-danger"><small>{{error}}</small></div>
+            {% endfor %}
+    {% else %}
+        {{ field(**kwargs) | safe }}
+    {% endif %}
+</div>
+
+{% endmacro %}
