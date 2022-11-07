@@ -1,0 +1,17 @@
+2022-11-03 00:36:12.293 | INFO     | __main__:receive_message:57 - Denys den.vekeryk@gmail.com +380961176177 1 Your website has bug
+2022-11-03 12:44:38.302 | INFO     | app.views:receive_message:55 - Денис Веке denis230903@gmail.com +380961176177 1 adsad
+2022-11-03 12:49:37.406 | INFO     | app.views:receive_message:55 - Денис Веке denis230903@gmail.com +380961176177 1 esrgs
+2022-11-03 16:14:04.690 | INFO     | app.views:save_message:56 - Денис deni903@gmail.com +380961176177 1 
+2022-11-03 16:14:54.433 | INFO     | app.views:save_message:56 - Ivan ivan@gmail.com +380961176177 1 message
+2022-11-03 16:15:11.870 | INFO     | app.views:save_message:56 - Annn ann@gmail.com +380961176177 1 new new
+2022-11-07 16:07:36.834 | INFO     | app.views:save_message:71 - Денис den.vekeryk@gmail.com +380961176177 Cooperation Привіт, це моє повідомлення!!!!!
+2022-11-07 16:08:38.628 | INFO     | app.views:save_message:71 - Анічка ann@gmail.com +380961176234 Bug report У вас тут проблемка
+2022-11-07 16:09:19.148 | INFO     | app.views:save_message:71 - Іван ivan@gmail.com +380961174567 Suggestions Лабораторну прийнято
+2022-11-07 16:17:02.901 | INFO     | app.views:save_message:72 - кпукпіукп den.vekeryk@gmail.com +380961176177 Bug report івапівапівап
+2022-11-07 16:21:46.967 | INFO     | app.views:save_message:72 - Денис Веке den.vekeryk@gmail.com +380961176177 Bug report awefawe
+2022-11-07 16:22:10.455 | INFO     | app.views:save_message:72 - Денис Веке den.vekeryk@gmail.com +380961176177 Bug report awefawef
+2022-11-07 16:27:26.390 | INFO     | app.views:save_message:72 - Денис den.vekeryk@gmail.com +380961176177 Cooperation Привіт, це моє повідомлення!!!!!
+2022-11-07 16:27:50.455 | INFO     | app.views:save_message:72 - Анічка ann@gmail.com +380961176234 Bug report У вас тут проблемка
+2022-11-07 16:28:11.655 | INFO     | app.views:save_message:72 - Іван ivan@gmail.com +380961174567 Suggestions Лабораторну прийнято
+2022-11-07 16:28:29.198 | INFO     | app.views:save_message:72 - Іван ivan@gmail.com +380961174567 Bug report werawrawerawerawer
+2022-11-07 16:35:39.194 | INFO     | app.views:save_message:72 - Іван ivan@gmail.com +380961174567 Bug report werawrawerawerawer

@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, session, url_for, flash
-from app import app
+from app import app, db
+from app.models import Message
 from app.forms import ContactForm
 from datetime import datetime
 from loguru import logger
@@ -27,7 +28,7 @@ def portfolio():
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
-        receive_message(form)
+        save_message(form)
         flash(f"Your message has been sent: {form.name.data}, {form.email.data}", category='success')
         return redirect(url_for("contact"))
     elif request.method == 'POST':
@@ -44,6 +45,21 @@ def clear():
     session.pop("name", default=None)
     return redirect(url_for("contact"))
 
+@app.route('/messages')
+def messages():
+    messages = Message.query.all()
+    return render_template('messages.html', messages=messages)
+
+@app.route('/messages/delete/<id>')
+def delete_message(id):
+    Message.query.filter_by(id=id).delete()
+    try:
+        db.session.commit()
+    except:
+        db.session.flush()
+        db.session.rollback()
+    return redirect(url_for("messages"))
+        
 def get_stats():
     return {
         "Operating System": os.name,
@@ -51,10 +67,24 @@ def get_stats():
         "Current time": datetime.now().strftime("%H:%M:%S")
     }
 
-def receive_message(form):
-    logger.info(f"{form.name.data} {form.email.data} {form.phone.data} {form.subject.data} {form.message.data}")
+def save_message(form):
+    subject = dict(form.subject.choices).get(form.subject.data)
+    logger.info(f"{form.name.data} {form.email.data} {form.phone.data} {subject} {form.message.data}")
     session['name'] = form.name.data
     session['email'] = form.email.data
+    person = Message(
+        name = form.name.data,
+        email = form.email.data,
+        phone = form.phone.data,
+        subject = subject,
+        message = form.message.data,
+    )
+    try:
+        db.session.add(person)
+        db.session.commit()
+    except:
+        db.session.flush()
+        db.session.rollback()
 
 if __name__ == '__main__':
     app.run(debug=True)
