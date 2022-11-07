@@ -72,15 +72,15 @@ def save_message(form):
     logger.info(f"{form.name.data} {form.email.data} {form.phone.data} {subject} {form.message.data}")
     session['name'] = form.name.data
     session['email'] = form.email.data
-    person = Message(
+    message = Message(
         name = form.name.data,
         email = form.email.data,
         phone = form.phone.data,
         subject = subject,
-        message = form.message.data,
+        message = form.message.data
     )
     try:
-        db.session.add(person)
+        db.session.add(message)
         db.session.commit()
     except:
         db.session.flush()
