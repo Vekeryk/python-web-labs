@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block subtitle %}Registration{% endblock %}
+{% block content %}
+
+{% for cat, msg in get_flashed_messages(True) %}
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-{{cat}} py-1">{{msg}}</li>
+    </ul>
+{%endfor %}
+
+{% from "macroses/_render_form.html" import render_form %}
+
+{{ render_form(form, "register") }}
+
+{% endblock %}
