@@ -96,7 +96,6 @@ def login():
             login_user(user, remember=form.remember.data)
             flash(f"You have been logged in", category='success')
             next = request.args.get('next')
-            print(next)
             if not is_safe_url(next):
                 return abort(400)
 
