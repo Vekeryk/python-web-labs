@@ -1,6 +1,5 @@
 from . import bcrypt
-from . import db, login_manager
-from flask_login import UserMixin
+from . import db
 
 class Message(db.Model):
     __tablename__ = "messages"
@@ -16,7 +15,7 @@ class Message(db.Model):
         return f"""Message('{self.message}', '{self.email}')"""
 
         
-class User(db.Model, UserMixin):
+class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
