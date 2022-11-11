@@ -55,8 +55,9 @@ def messages():
 
 @app.route('/messages/delete/<id>')
 def delete_message(id):
-    Message.query.filter_by(id=id).delete()
+    message = Message.query.get_or_404(id)
     try:
+        db.session.delete(message)
         db.session.commit()
     except:
         db.session.flush()
