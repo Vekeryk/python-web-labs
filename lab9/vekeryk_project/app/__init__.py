@@ -28,7 +28,7 @@ def create_app(config_name = 'default'):
         from app.account import account_bp
 
         app.register_blueprint(home_bp)
-        app.register_blueprint(feedback_bp)
+        app.register_blueprint(feedback_bp, url_prefix='/feedback')
         app.register_blueprint(account_bp)
 
     return app
