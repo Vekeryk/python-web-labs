@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Messages{% endblock %}
+{% block subtitle %}All messages{% endblock %}
+{% block content %}
+<table class="table w-75 table-bordered border border-4 text-center">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">Phone</th>
+			<th scope="col">Subject</th>
+			<th scope="col">Message</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for message in messages %}
+		<tr>
+			<th scope="row">{{message.id}}</th>
+			<td>{{message.name}}</td>
+			<td>{{message.email}}</td>
+			<td>{{message.phone}}</td>
+			<td>{{message.subject}}</td>
+			<td>{{message.message}}</td>
+			<td>
+				<a href={{ url_for('feedback.delete_message', id=message.id) }}>
+					<button class="btn btn-danger btn-sm">Delete</button>
+				</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

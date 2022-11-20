@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %} {% endblock %}</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+	{% include 'includes/header.html' %}
+	<main class="d-flex align-items-center flex-column">
+		{% for cat, msg in get_flashed_messages(True) %}
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-{{cat}} py-1">{{msg}}</li>
+			</ul>
+		{%endfor %}
+		<h1>{% block subtitle %}{% endblock %}</h1>
+		{% block content %}{% endblock %}
+	</main>
+	{% include 'includes/footer.html' %}
+</body>
+
+</html>

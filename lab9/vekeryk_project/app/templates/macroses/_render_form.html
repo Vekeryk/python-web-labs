@@ -1,0 +1,13 @@
+{% macro render_form(form, action) %}
+
+{% from "macroses/_render_field.html" import render_field %}
+
+<form action="{{ url_for(action) }}" method="post" class="w-25">
+    {{ form.csrf_token }}
+    {% for field in form if field not in [form.submit, form.hidden_tag, form.csrf_token] %}
+        {{ render_field(field, class="form-control" if not field.render_kw else field.render_kw.class) }}
+    {% endfor %}
+    {{ form.submit(class="btn btn-primary my-2") }}
+</form>
+
+{% endmacro %}
