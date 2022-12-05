@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block subtitle %}Registration{% endblock %}
+{% block content %}
+
+{% from "macroses/_render_form.html" import render_form %}
+
+{{ render_form(form, "account.register") }}
+
+{% endblock %}

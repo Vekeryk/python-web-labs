@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Account{% endblock %}
+{% block subtitle %}Account{% endblock %}
+{% block content %}
+<h3>{{ current_user.username }}</h3>
+<h4>{{ current_user.email }}</h4>
+<h4>{{ current_user.image_file }}</h4>
+{% endblock %}
