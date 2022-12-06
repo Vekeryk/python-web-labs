@@ -21,8 +21,8 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=True)
-    created = db.Column(db.Date, default=now())
-    modified = db.Column(db.Date, default=now(), onupdate=now())
+    created = db.Column(db.DateTime, default=now())
+    modified = db.Column(db.DateTime, default=now(), onupdate=now())
     deadline = db.Column(db.Date, default=now())
 
     priority = db.Column(db.Enum(Priority), default='low')
