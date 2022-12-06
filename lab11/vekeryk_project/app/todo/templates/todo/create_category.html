@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Create category{% endblock %}
+{% block subtitle %}Create category{% endblock %}
+{% block content %}
+
+{% from "macroses/_render_form.html" import render_form %}
+
+{{ render_form(form, "todo.create_category") }}
+
+{% endblock %}
