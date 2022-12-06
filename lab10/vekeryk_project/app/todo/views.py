@@ -109,7 +109,6 @@ def delete_category(id):
 @todo_bp.route('/tasks/<id>/delete')
 @login_required
 def delete_task(id):
-    print(id)
     task = Task.query.get_or_404(id)
     try:
         db.session.delete(task)

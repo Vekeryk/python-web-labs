@@ -55,7 +55,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    task_id = db.Column(db.Integer, db.ForeignKey('tasks.id'), nullable=False)    
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    task_id = db.Column(db.Integer, db.ForeignKey('tasks.id'))    
 
     user = db.relationship('User', backref=db.backref('comments'))
