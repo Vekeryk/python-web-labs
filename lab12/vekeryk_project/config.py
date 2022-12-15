@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     DEVELOPMENT = False
+    JWT_SECRET_KEY='super-secret'
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'mysupersecretkey'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WTF_CSRF_ENABLED = True
@@ -19,9 +20,11 @@ class DevConfig(Config):
 
 
 class TestConfig(Config):
+    TESTING = True
     DEVELOPMENT = True
     DEBUG = True
-    WTF_CSRF_ENABLED = True
+    WTF_CSRF_ENABLED = False
+    LIVESERVER_PORT = 0
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + \
         os.path.join(basedir, 'test_site.db')
 

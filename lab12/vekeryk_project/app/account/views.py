@@ -70,6 +70,7 @@ def reset_password():
         return redirect(url_for('account.account_profile'))
     return render_template('reset_password.html', form=form)
 
+
 @account_bp.route('/logout')
 def logout():
     logout_user()
