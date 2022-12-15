@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Tasks{% endblock %}
+
+{% block subtitle %}
+    {% if user.id == current_user.id %}
+        Your tasks
+    {% else %}
+        Tasks of user {{user.username}}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if user.id == current_user.id %}
+        <a href={{ url_for('todo.create_task') }}>
+            <button class="btn btn-success my-2">Create new task</button>
+        </a>
+    {% endif %}
+
+    {% from "_render_tasks.html" import render_tasks %}
+
+    {% if user.own_tasks %}
+        <h3>Own tasks</h3>
+        {{ render_tasks(user.own_tasks) }}
+    {% else %}
+        <h3>There are no own tasks!</h3>
+    {% endif %}
+    <hr>
+    {% if user.collaborate_tasks %}
+        <h3>Colaborate tasks</h3>
+        {{ render_tasks(user.collaborate_tasks) }}
+    {% else %}
+        <h3>There are no colaborate tasks!</h3>
+    {% endif %}
+
+{% endblock %}
