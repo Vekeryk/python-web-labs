@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Update category{% endblock %}
+{% block subtitle %}Update category{% endblock %}
+{% block content %}
+
+{% from "macroses/_render_field.html" import render_field %}
+
+<form action="{{ url_for('todo.update_category', id=id) }}" method="post" class="w-50 mb-5">
+    {{ form.csrf_token }}
+    {% for field in form if field not in [form.submit, form.hidden_tag, form.csrf_token] %}
+        {{ render_field(field, class="form-control" if not field.render_kw else field.render_kw.class) }}
+    {% endfor %}
+    {{ form.submit(class="btn btn-primary my-2") }}
+</form>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Task{% endblock %}
+{% block subtitle %}{{task.title}}{% endblock %}
+{% block content %}
+
+<div class="d-flex flex-row mb-3 w-50 justify-content-between">
+    <a href={{ url_for('todo.update_task', id=task.id) }}>
+        <button type="button" class="btn btn-primary">Edit</button>
+    </a>
+    <a href={{ url_for('todo.delete_task', id=task.id) }}>
+        <button type="button" class="btn btn-danger">Delete</button>
+    </a>
+</div>
+<table class="table w-50 table-bordered border border-4 text-center">
+    <tr>
+        <th>Category</th>
+        <td>{{task.category.name}}</td>
+    </tr>
+    <tr>
+        <th>Created</th>
+        <td>{{task.created}}</td>
+    </tr>
+    <tr>
+        <th>Modified</th>
+        <td>{{task.modified}}</td>
+    </tr>
+    <tr>
+        <th>Deadline</th>
+        <td>{{task.deadline}}</td>
+    </tr>
+    <tr>
+        <th>Priority</th>
+        <td>{{task.priority.name}}</td>
+    </tr>
+    <tr>
+        <th>Progress</th>
+        <td>{{task.progress.name}}</td>
+    </tr>
+    <tr>
+        <th>Owner</th>
+        <td>
+            <a href={{ url_for('todo.tasks', user_id=task.owner_id) }}>
+                {{task.owner.username}}
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th>Collaborators</th>
+        <td>
+        {% for collaborator in task.collaborators %}
+            <a href={{ url_for('todo.tasks', user_id=collaborator.id) }}>
+                {{collaborator.username}}
+            </a>
+            <br>
+        {% endfor %}
+        </tr>
+    </tr>
+</table>
+<h3>Description</h3>
+<div class="border border-2 border-dark rounded p-1 w-50 mb-3">{{ task.description | safe }}</div>
+<h3>Comments</h3>
+<a href='#comments'></a>
+{% if not task.comments %}
+    <h4>There are no comments. Write one</h4>
+{% endif %}
+
+{% from "macroses/_render_field.html" import render_field %}
+
+{% if current_user.id == task.owner.id or current_user in task.collaborators%}
+    <form action="{{ url_for('todo.task', task_id=task.id) }}" method="post" class="w-50 mb-5">
+        {{ form.csrf_token }}
+        {% for field in form if field not in [form.submit, form.hidden_tag, form.csrf_token] %}
+            {{ render_field(field, class="form-control" if not field.render_kw else field.render_kw.class) }}
+        {% endfor %}
+        {{ form.submit(class="btn btn-primary my-2") }}
+    </form>
+
+
+    {% for comment in task.comments %}
+        <div class='text-align-left w-50'>
+            <a href={{ url_for('todo.tasks', user_id=task.owner_id) }}>
+                {{comment.user.username}}
+            </a>
+            <br>
+            <div class="border border-2 border-dark rounded p-1 mb-3">
+                {{comment.body | safe}}
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endif %}
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='description') }}
+{% endblock %}

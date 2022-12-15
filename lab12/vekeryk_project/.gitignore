@@ -1,0 +1,7 @@
+myvenv
+__pycache__
+*.db
+migrations
+.flaskenv
+*.jpg
+*.png
