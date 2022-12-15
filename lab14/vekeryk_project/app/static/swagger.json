@@ -1,0 +1,292 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "sean",
+        "version": "1.0.0",
+        "title": "Task API-RESTFUL",
+        "contact": {
+            "email": "seanwasere@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Task Request",
+            "description": "Example API for requesting and return task requests"
+        }
+    ],
+    "paths": {
+        "/api/v2/tasks": {
+            "get": {
+                "tags": [
+                    "Task Request"
+                ],
+                "summary": "Returns taskRequests",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/taskRequest"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Task Request"
+                ],
+                "summary": "Create a new task request system",
+                "requestBody": {
+                    "description": "Task Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/taskRequestPostBody"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/api/v2/tasks/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the cat that we want to match",
+                    "type": "int"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Task Request"
+                ],
+                "summary": "Task request with given ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Task Request id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/bookRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Task request not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Edit task request by ID",
+                "tags": [
+                    "Task Request"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Task Request id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Task Request Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/taskRequestPostBodyEdit"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/taskRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete task requested by ID",
+                "tags": [
+                    "Task Request"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Task Request Id",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Task Request not found."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "id": {
+                "properties": {
+                    "id": {
+                        "type": "int"
+                    }
+                }
+            },
+            "taskRequestPostBody": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "description": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "category_id": {
+                        "type": "integer",
+                        "format": "number"
+                    },
+                    "owner_id": {
+                        "type": "integer",
+                        "format": "number"
+                    }
+                }
+            },
+            "taskRequestPostBodyEdit": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "description": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "created": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "deadline": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "proirity": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "progress": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "category_id": {
+                        "type": "int",
+                        "format": "number"
+                    }
+                }
+            },
+            "taskRequest": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "int",
+                        "format": "number"
+                    },
+                    "title": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "description": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "created": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "progress": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "category_id": {
+                        "type": "int",
+                        "format": "number"
+                    }
+                }
+            }
+        }
+    }
+}

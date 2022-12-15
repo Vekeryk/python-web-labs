@@ -34,11 +34,15 @@ def create_app(config_name='default'):
         from app.feedback import feedback_bp
         from app.account import account_bp
         from app.category_api import category_api_bp
+        from app.task_api import task_api_bp
+        from app.swagger import swagger_bp
 
         app.register_blueprint(home_bp)
         app.register_blueprint(feedback_bp, url_prefix='/feedback')
         app.register_blueprint(account_bp)
         app.register_blueprint(todo_bp)
         app.register_blueprint(category_api_bp, url_prefix='/api')
+        app.register_blueprint(task_api_bp, url_prefix='/api/v2/tasks')
+        app.register_blueprint(swagger_bp, url_prefix='/swagger')
 
     return app
