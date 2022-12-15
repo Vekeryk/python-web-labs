@@ -5,3 +5,4 @@ migrations
 .flaskenv
 *.jpg
 *.png
+.pytest_cache

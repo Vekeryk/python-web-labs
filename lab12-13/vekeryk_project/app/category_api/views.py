@@ -1,7 +1,6 @@
 from datetime import datetime
 from flask import make_response, request, jsonify, current_app
 from flask_jwt_extended import create_access_token, jwt_required
-import jwt
 from .. import db
 from functools import wraps
 from ..todo.models import Category
